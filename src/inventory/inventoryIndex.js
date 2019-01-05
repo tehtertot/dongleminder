@@ -10,7 +10,7 @@ class InventoryIndex extends React.Component {
         this.state = {
             "items": [],
         }
-        fetch("http://localhost:5000/items/detail", {
+        fetch("/items/detail", {
             method: "GET",
             crossDomain: true,
         })

@@ -9,7 +9,8 @@ class UserSearch extends React.Component {
             filteredStudents: [],
             searchFilter: "",
         }
-        fetch('http://localhost:5000/users', {
+        // fetch('http://localhost:5000/users', {
+        fetch('/users', {
             method: 'GET',
             crossDomain: true,
         })

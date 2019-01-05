@@ -6,7 +6,8 @@ class ItemRow extends React.Component {
         e.preventDefault();
         let item = this.props.item.id;
         let student = this.props.student.id;
-        fetch(`http://localhost:5000/checkin/${student}/${item}`, {
+        // fetch(`http://localhost:5000/checkin/${student}/${item}`, {
+        fetch(`/users/checkin/${student}/${item}`, {
             method: "POST",
         })
             .then(() => this.props.update() )

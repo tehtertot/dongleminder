@@ -22,7 +22,7 @@ class CheckoutForm extends React.Component {
     handleCheckout(e) {
         e.preventDefault();
         if (this.props.studentId && this.state.itemSelected) {
-            fetch(`http://localhost:5000/checkout/${this.props.studentId}/${this.state.itemSelected}`, {
+            fetch(`/users/checkout/${this.props.studentId}/${this.state.itemSelected}`, {
                 method: "POST",
             })
                 .then(() => {

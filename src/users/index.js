@@ -17,7 +17,8 @@ class Index extends React.Component {
     }
 
     displayStudent(id) {
-        fetch(`http://localhost:5000/users/${id}`, {
+        // fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`/users/${id}`, {
             method: "GET",
             crossDomain: true,
         })
@@ -29,7 +30,8 @@ class Index extends React.Component {
     }
 
     displayItemDropdown() {
-        fetch('http://localhost:5000/items', {
+        // fetch('http://localhost:5000/items', {
+        fetch('/items', {
             method: 'GET',
             crossDomain: true,
         })
@@ -39,7 +41,8 @@ class Index extends React.Component {
 
     displayStudentItems() {
         let id = this.state.student.id;
-        fetch(`http://localhost:5000/users/${id}/items`, {
+        // fetch(`http://localhost:5000/users/${id}/items`, {
+        fetch(`/users/${id}/items`, {
             method: 'GET',
             crossDomain: true,
         })
