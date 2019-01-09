@@ -1,31 +1,51 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import UserSearch from './userSearch';
-import ItemTable from './itemTable';
-import InventoryIndex from '../inventory/inventoryIndex';
+import RightTable from './rightTable';
 
 class Index extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            student: null,
-            items: [],
+            userId: null,
+            user: null,
+            allUsers: [],
+            userItems: [],
             allItems: [],
         };
-        this.updateTable = this.displayStudentItems.bind(this);
+
+        this.displayAllUsers = this.displayAllUsers.bind(this);
+        this.displayUser = this.displayUser.bind(this);
+        this.displayUserItems = this.displayUserItems.bind(this);
+        this.displayItemDropdown = this.displayItemDropdown.bind(this);
+
+        this.displayAllUsers();
     }
 
-    displayStudent(id) {
-        // fetch(`http://localhost:5000/users/${id}`, {
-        fetch(`/users/${id}`, {
+    displayAllUsers(id=null) {
+        // fetch('http://localhost:5000/users', {
+        fetch('/users', {
+            method: 'GET',
+            crossDomain: true,
+        })
+            .then((res) => res.json())
+            .then((jsonRes) => {
+                this.setState({allUsers: jsonRes});
+                if (id) this.displayUser(id);
+            })
+    }
+
+    displayUser(id) {
+        let displayId = id ? id : this.state.user.id;
+        // fetch(`http://localhost:5000/users/${displayId}`, {
+        fetch(`/users/${displayId}`, {
             method: "GET",
             crossDomain: true,
         })
             .then((res) => res.json())
             .then((jsonRes) => {
-                this.setState({student: jsonRes[0]});
-                this.displayStudentItems();
+                this.setState({user: jsonRes[0]});
+                this.displayUserItems();
             })
     }
 
@@ -39,8 +59,8 @@ class Index extends React.Component {
             .then((jsonRes) => this.setState({allItems: jsonRes}));
     }
 
-    displayStudentItems() {
-        let id = this.state.student.id;
+    displayUserItems() {
+        let id = this.state.user.id;
         // fetch(`http://localhost:5000/users/${id}/items`, {
         fetch(`/users/${id}/items`, {
             method: 'GET',
@@ -48,25 +68,16 @@ class Index extends React.Component {
         })
             .then((res) => res.json())
             .then((jsonRes) => {
-                this.setState({ items: jsonRes });
+                this.setState({ userItems: jsonRes });
                 this.displayItemDropdown();
             })
     }
 
-    switchView() {
-        ReactDOM.render(
-            <InventoryIndex />,
-            document.getElementById('root')
-        );
-    }
-
     render() {
         return (
-            <div className="container">
-                <h3>Dojo Inventory</h3>
-                <p className="link" onClick={this.switchView}>View All</p>
-                <UserSearch showStudent={ this.displayStudent.bind(this) } />
-                <ItemTable student={this.state.student} items={this.state.items} update={this.updateTable} allItems={this.state.allItems} />
+            <div>
+                <UserSearch showUser={ this.displayUser } allUsers={ this.state.allUsers } />
+                <RightTable user={ this.state.user } updateUser={ this.displayUser } allItems={ this.state.allItems } userItems={ this.state.userItems } updateUsers={ this.displayAllUsers } />
             </div>
         );
     }

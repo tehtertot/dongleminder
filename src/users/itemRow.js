@@ -5,10 +5,11 @@ class ItemRow extends React.Component {
     returnItem(e) {
         e.preventDefault();
         let item = this.props.item.id;
-        let student = this.props.student.id;
-        // fetch(`http://localhost:5000/checkin/${student}/${item}`, {
-        fetch(`/users/checkin/${student}/${item}`, {
+        let user = this.props.user.id;
+        // fetch(`http://localhost:5000/users/checkin/${user}/${item}`, {
+        fetch(`/users/checkin/${user}/${item}`, {
             method: "POST",
+            crossDomain: true,
         })
             .then(() => this.props.update() )
             .catch(() => {console.log("something went wrong")})
