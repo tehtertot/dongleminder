@@ -6,7 +6,7 @@ class InventoryIndex extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            "items": [],
+            items: [],
         }
         // fetch("http://localhost:5000/items/detail", {
         fetch("/items/details", {
