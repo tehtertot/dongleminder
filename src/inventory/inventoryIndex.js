@@ -15,7 +15,7 @@ class InventoryIndex extends React.Component {
         })
             .then((res) => res.json())
             .then((jsonRes) => {
-                this.setState( {'items': jsonRes} )
+                this.setState( {items: jsonRes} )
             })
     }
     render() {
