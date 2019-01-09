@@ -9,7 +9,7 @@ class InventoryIndex extends React.Component {
             items: [],
         }
         // fetch("http://localhost:5000/items/detail", {
-        fetch("/items/details", {
+        fetch("/items/detail", {
             method: "GET",
             crossDomain: true,
         })
