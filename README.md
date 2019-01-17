@@ -10,6 +10,7 @@ Contains components to view inventory by item
 
 ## To Do
 - integrate Redux
+- decouple API routes
 - front-end styling
 
 ## Setup
