@@ -1,3 +1,21 @@
+# Purpose
+Client side of an application intended to manage inventory.
+
+## Components
+### Users
+Contains components for users to interact with inventory (check in, check out, view loaned items)
+
+### Inventory
+Contains components to view inventory by item
+
+## To Do
+- integrate Redux
+- front-end styling
+
+## Setup
+Currently links to back-end Flask API found here: [https://github.com/tehtertot/dongleminder-api]
+
+---------------------
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
